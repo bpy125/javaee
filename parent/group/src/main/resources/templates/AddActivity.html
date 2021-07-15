@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+  <head>
+
+    <meta charset="UTF-8">
+    <title>My JSP 'Manager.jsp' starting page</title>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+	<link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="easyui/demo/demo.css">
+    <link href="dist/css/bootstrap.css" rel="stylesheet">
+	<script type="text/javascript" src="easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	<style type="text/css">
+	body{
+		background-size:100% 100%;
+	}
+	#abc{
+        text-align:right;
+
+		margin:0 auto;
+		width:500px;
+	}
+
+    .form-group {
+        margin-right: 150px;
+    }
+	label{
+		font-family:宋体;
+
+        font-weight:bolder;
+		font-size:20px;
+	}
+	p.p0{	font-family:宋体;
+
+		font-weight:bolder;
+		font-size:30px;
+		text-align:center;}
+	p.p1{font-family:宋体;
+		font-weight:bolder;
+		font-size:20px;
+		text-align:center;
+	}
+	#btn{
+	margin:5px auto;
+	position:center}
+	</style>
+  </head>
+
+  <body style="background-color: #9acfea">
+  <div class="ui container">
+  <p class = "p0">团建</p>
+  <p class = "p1">---------创建团队活动</p>
+  <div id="abc">
+     <form id="ff" method="post" th:action="@{/insertActivity}">
+  
+    <div class="form-group">
+		<label for="tb2">活动名称:&nbsp;&nbsp;</label>
+		<input id = "tb2" type="text" name="name" data-options="required:true" style="margin-right: 20px"/><br><br>
+    </div>
+    <div class="form-group">
+		<label for="tb3">费用:&nbsp;&nbsp;</label>
+		<input id ="tb3" type="text" name="basicPay" data-options="required:true" style="margin-right: 20px"/><br><br>
+    </div>
+         <div class="form-group">
+             <label for="tb4">地点:&nbsp;&nbsp;</label>
+             <input id = "tb4" type="text" name="address" data-options="required:true" style="margin-right: 20px"/><br><br>
+         </div>
+         <div class="form-group">
+             <label for="tb5">内容:&nbsp;&nbsp;</label>
+             <input id = "tb5" type="text" name="content" data-options="required:true" style="margin-right: 20px"/><br><br>
+         </div>
+         <div class="form-group">
+             <label for="tb6">活动日期:&nbsp;&nbsp;</label>
+             <input id = "tb6" type="date" name="date" data-options="required:true" style="width: 180px"/><br><br>
+         </div>
+         <div class="form-group">
+             <label for="tb7">天数:&nbsp;&nbsp;</label>
+             <input id = "tb7" type="text" name="days" data-options="required:true" style="width: 180px"/><br><br>
+         </div>
+         <div class="form-group">
+             <label for="tb8">团费:&nbsp;&nbsp;</label>
+             <input id = "tb8" type="text" name="due" data-options="required:true" style="width: 180px"/><br><br>
+         </div>
+         <div class="form-group">
+             <label for="tb9">团长姓名:&nbsp;&nbsp;</label>
+             <input id = "tb9" type="text" name="leader" data-options="required:true" style="width: 180px"/><br><br>
+         </div>
+    <div class="form-group">
+		<!-- <a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Add</a>
+     -->
+     <center><input type ="submit" id="btn" class="btn btn-primary" value="创建团队活动"></center>
+     </div>
+    
+</form>
+</div>
+  </div>
+  </body>
+
+  <script type="text/javascript">
+
+      $('#tb1').textbox({
+
+          iconCls:'icon-man',
+          iconAlign:'left'
+      })
+      $('#tb2').textbox({
+
+          iconCls:'icon-man',
+          iconAlign:'left'
+      })
+      $('#tb3').textbox({
+
+          iconCls:'icon-man',
+          iconAlign:'left'
+      })
+      $('#tb4').textbox({
+
+          iconCls:'icon-man',
+          iconAlign:'left'
+      })
+      $('#tb5').textbox({
+
+          iconCls:'icon-man',
+          iconAlign:'left'
+      })
+      $('#tb6').textbox({
+
+          iconCls:'icon-man',
+          iconAlign:'left'
+      })
+      $('#tb7').textbox({
+
+          iconCls:'icon-man',
+          iconAlign:'left'
+      })
+      $('#tb8').textbox({
+
+          iconCls:'icon-man',
+          iconAlign:'left'
+      })
+      $('#tb9').textbox({
+
+          iconCls:'icon-man',
+          iconAlign:'left'
+      })
+
+      // call 'submit' method of form plugin to submit the form
+  $('#btn').linkbutton({
+	    width:120,
+	    height:40
+	});
+  </script>
+</html>

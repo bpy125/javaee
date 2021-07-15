@@ -1,0 +1,18 @@
+server:
+  port: 9988
+  # servlet:
+#    context-path: /51code
+
+# date: "0003-25"
+#todo:
+#  date: "3-25"
+#  thing: 今天${todo.date}
+spring:
+  application:
+    name: groupconsumer
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+
+
+

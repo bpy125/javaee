@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+
+    <meta charset="UTF-8">
+    <title>导出excel</title>
+    <link href="dist/css/bootstrap.css" rel="stylesheet">
+    <script type="text/javascript" th:src="@{easyui/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{dist/jquery.table2excel.min.js}"></script>
+    <script type="text/javascript" th:src="@{dist/cycle.js}"></script>
+    <script type="text/javascript" th:inline="javascript">
+        function ExportToExcel() {
+            $("#tableExcel").table2excel({
+                exclude : ".noExl", //过滤位置的 css 类名
+                filename : "tour.xls", //文件名称
+                name: "Excel Document Name.xlsx",
+                exclude_img: false,//是否导出图片 false导出
+                exclude_links: true,//是否导出链接 false导出
+                exclude_inputs: true//是否导出输入框的值 true导出
+            });
+        }
+    </script>
+</head>
+<body style="background-color: #9acfea">
+<div class="ui container">
+    <table class="table table-condensed" id="tableExcel" style="margin-top: 40px !important;" border=2>
+        <tr>
+            <td>姓名</td>
+            <td>参加活动</td>
+            <td>合计费用</td>
+        </tr>
+        <tr th:each="a:${l}">
+            <td th:text="${a[0]}"></td>
+            <td th:text="${a[1]}"></td>
+            <td th:text="${a[2]}"></td>
+        </tr>
+    </table>
+</div>
+    <div >
+        <button type="button" class="btn btn-primary" id="btnExport" onclick="ExportToExcel();" style="margin:20px auto;margin-left: 50px">导出Excel</button>
+    </div>
+
+</body>
+</html>

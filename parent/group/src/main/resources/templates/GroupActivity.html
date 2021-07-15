@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>客户信息</title>
+
+	<link href="dist/css/bootstrap.css" rel="stylesheet">
+</head>
+<body style="background-color: #9acfea">
+<div class="ui container">
+	<table class="table table-condensed" style="margin-top: 40px !important;" border=2>
+		<tr>
+			<td>编号</td>
+			<td>名称</td>
+			<td>基础费用</td>
+			<td>地点</td>
+			<td>内容</td>
+			<td>日期</td>
+			<td>天数</td>
+			<td>团费</td>
+			<td>团长</td>
+			<td>参加人数</td>
+		</tr>
+		<tr th:each="activity:${list}">
+			<td th:text="${activity.id}"></td>
+			<td th:text="${activity.name}"></td>
+			<td th:text="${activity.basicPay}"></td>
+			<td th:text="${activity.address}"></td>
+			<td th:text="${activity.content}"></td>
+			<td th:text="${activity.date}"></td>
+			<td th:text="${activity.days}"></td>
+			<td th:text="${activity.due}"></td>
+			<td th:text="${activity.leader}"></td>
+			<td th:text="${activity.number}"></td>
+		</tr>
+	</table>
+</div>
+</body>
+</html>

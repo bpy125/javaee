@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.group.dao.TouristDao">
+	<!--根据id查询客户信息 -->
+	<select id="findActivityWithTourists" parameterType="Integer" 
+						   resultMap="ActivityWithTouristsResult">
+		SELECT a.*,p.id as p_id,p.Name as p_Name,p.Age,p.Sex,p.pay,p.phoneNumber
+		from tb_activity a,tb_people p 
+		WHERE  a.id=#{id}
+			and a.id=p.activity_id
+	</select>
+	<select id="findTouristByName" parameterType="String"
+			resultType="com.example.group.pojo.Tourist">
+		SELECT *
+		from tb_people p
+		WHERE  p.name=#{name}
+
+	</select>
+	<select id="findActivityById" parameterType="Integer" resultType="com.example.group.pojo.GroupActivity">
+		select a.*
+		from tb_activity a
+		where a.id = #{activity_id}
+	</select>
+	<resultMap type="com.example.group.pojo.GroupActivity" id="ActivityWithTouristsResult">
+		<id property="id" column="id"/>
+		<result property="name" column="Name"/>
+		<result property="basicPay" column="basicPay"/>
+		<result property="address" column="address"/>
+		<result property="content" column="content"/>
+		<result property="date" column="date"/>
+		<result property="days" column="days"/>
+		<result property="due" column="due"/>
+		<result property="leader" column="leader"/>
+		<result property="number" column="number"/>
+		<!-- 一对多关联映射：collection
+			ofType表示属性集合中元素的类型，List<Orders>属性即Orders类 -->
+		<collection property="list" ofType="tourist">
+			<id property="id" column="p_id"/>
+			<result property="name" column="p_Name"/>
+			<result property="age" column="Age"/>
+			<result property="sex" column="Sex"/>
+			<result property="pay" column="pay"/>
+			<result property="phoneNumber" column="phoneNumber"/>
+		</collection>
+	</resultMap>
+	
+	<select id="findAllActivityWithTourists"  
+						   resultMap="ActivityWithTouristsResult">
+		SELECT a.*,p.id as p_id,p.Name as p_Name,p.Age,p.Sex,p.pay,p.phoneNumber
+		from tb_activity a,tb_people p 
+		WHERE a.id=p.activity_id 
+         
+	</select>
+	<select id="findActivityByLeader" parameterType="String" resultMap="ActivityWithTouristsResult">
+		select a.*,p.id as p_id,p.Name as p_Name,p.Age,p.Sex,p.pay,p.phoneNumber
+		from tb_activity a,tb_people p
+		where a.leader=#{arg0}
+			and p.name=#{arg0}
+			and a.id = p.activity_id
+
+	</select>
+
+	<select id="findAllActivity"  
+						   resultType="com.example.group.pojo.GroupActivity">
+		SELECT a.* 
+		from tb_activity a 
+		 
+         
+	</select>
+	
+	<select id="findAllTourist"  
+						   resultType="com.example.group.pojo.Tourist">
+		SELECT a.* 
+		from tb_people a
+	</select>
+	
+	
+	<insert id="insertActivity" parameterType="com.example.group.pojo.GroupActivity">
+		insert into tb_activity(name,basicPay,address,content,date,days,due,leader,number)
+	    values(#{name},#{basicPay},#{address},#{content},#{date},#{days},#{due},#{leader},#{number})
+	</insert>
+	<insert id="insertTourist" parameterType="com.example.group.pojo.Tourist">
+		insert into tb_people(Name,Age,Sex,activity_id,phoneNumber,pay)
+	    values(#{name},#{age},#{sex},#{activity_id},#{phoneNumber},#{pay})
+	</insert>
+	<update id="updateTouristPay" parameterType="com.example.group.pojo.Tourist">
+	    update tb_people set
+	    pay=#{pay}+pay
+	     where activity_id=#{activity_id} and id=#{id}
+	</update>
+	<update id="AddAAPay" >
+	    update tb_people set
+	    pay=pay+#{arg1}
+	     where activity_id=#{arg0}
+	</update>
+	<update id="AddAAPay1" >
+		update tb_activity set
+			basicPay=basicPay+#{arg1}
+		where id=#{arg0}
+	</update>
+	<select id="findActivityBasicPay" parameterType="Integer" resultType="Double">
+		select basicPay from tb_activity where id=#{activity_id}
+	</select>
+	<insert id="addUser" parameterType="com.example.group.pojo.User">
+		insert into people(name,password,age,sex,phoneNumber)
+		values(#{name},#{password},#{age},#{sex},#{phoneNumber})
+	</insert>
+	<select id="findUser" parameterType="String" resultType="com.example.group.pojo.User">
+		select * from people where name=#{name}
+	</select>
+	<update id="updateActivityNumber" parameterType="Integer">
+		update tb_activity set number=number+1 where id=#{id}
+	</update>
+
+	<select id="findActivityByName1" parameterType="String" resultType="com.example.group.pojo.GroupActivity">
+		select * from tb_activity where name=#{name}
+	</select>
+	<select id="findTourist" parameterType="Integer" resultType="com.example.group.pojo.Tourist">
+		select * from tb_people where id=#{id} and activity_id=#{activity_id}
+	</select>
+
+</mapper>

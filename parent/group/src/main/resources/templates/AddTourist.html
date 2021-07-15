@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+  <head>
+
+    <meta charset="UTF-8">
+    <title>My JSP 'Manager.jsp' starting page</title>
+      <!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+	<link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="easyui/demo/demo.css">
+    <link href="dist/css/bootstrap.css" rel="stylesheet">
+	<script type="text/javascript" src="easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	<style type="text/css">
+	body{
+		background-size:100% 100%;
+	}
+	#abc{
+		text-align:right;
+
+		margin:0 auto;
+		width:500px;
+	}
+    .form-group {
+        margin-right: 150px;
+    }
+	#abc.a{
+	text-align:center;}
+	label{
+		font-family:宋体;
+
+		font-weight:bolder;
+		font-size:20px;
+	}
+	p.p0{	font-family:宋体;
+
+		font-weight:bolder;
+		font-size:30px;
+		text-align:center;}
+	p.p1{font-family:宋体;
+
+		font-weight:bolder;
+		font-size:20px;
+		text-align:center;
+	}
+	#btn{
+	margin:5px auto;
+	position:center}
+	</style>
+  </head>
+
+  <body style="background-color: #9acfea">
+  <div class="ui container">
+  <p class = "p0">团建</p>
+  <p class = "p1">请输入个人身份信息：</p>
+  <div id="abc">
+     <form id="ff" method="post" th:action="@{/joinActivity}">
+     <div class="form-group">
+		<label for="activity_id">活动ID:&nbsp;&nbsp;</label>
+		<input id = "tb2" type="text" name="activity_id" th:value="${id}" data-options="required:true" style="margin-right: 20px"/><br><br>
+    </div>
+    <div class="form-group">
+		<label for="name">团员姓名:&nbsp;&nbsp;</label>
+		<input id = "tb1" type="text" name="name" data-options="required:true" style="margin-right: 20px"/><br><br>
+    </div>
+    <div class="form-group">
+		<label for="age">团员年龄:&nbsp;&nbsp;</label>
+		<input id = "tb3" type="text" name="age" data-options="required:true" style="margin-right: 20px"/><br><br>
+    </div>
+    <div class="form-group">
+		<label for="basicWage">团员性别:&nbsp;&nbsp;</label>
+		<input id = "tb4" type="text" name="sex" data-options="required:true" style="margin-right: 20px"/><br><br>
+    </div>
+
+         <div class="form-group">
+             <label for="phoneNumber">手机号:&nbsp;&nbsp;</label>
+             <input id = "tb7" type="text" name="phoneNumber" data-options="required:true" /><br><br>
+         </div>
+
+    <div class="form-group">
+		<!-- <a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Add</a>
+     -->
+     <center><input type ="submit" id="btn" class="btn btn-primary"></center>
+     </div>
+    
+</form>
+</div>
+  </div>
+  </body>
+  <script type="text/javascript">
+  $('#tb1').textbox({
+                       
+                        iconCls:'icon-man',
+                        iconAlign:'left'
+                    })
+     $('#tb2').textbox({
+                       
+                        iconCls:'icon-man',
+                        iconAlign:'left'
+                    })
+     $('#tb3').textbox({
+                       
+                        iconCls:'icon-man',
+                        iconAlign:'left'
+                    })
+      $('#tb4').textbox({
+                        
+                        iconCls:'icon-man',
+                        iconAlign:'left'
+                    })
+      $('#tb5').textbox({
+                        
+                        iconCls:'icon-man',
+                        iconAlign:'left'
+                    })  
+       $('#tb6').textbox({
+                        
+                        iconCls:'icon-man',
+                        iconAlign:'left'
+                    })
+        $('#tb7').textbox({
+
+             iconCls:'icon-man',
+            iconAlign:'left'
+        })
+  // call 'submit' method of form plugin to submit the form
+
+  $('#btn').linkbutton({
+	    width:120,
+	    height:30
+	});
+
+  </script>
+</html>

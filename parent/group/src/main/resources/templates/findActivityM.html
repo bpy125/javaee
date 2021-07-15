@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>客户信息</title>
+
+    <link href="dist/css/bootstrap.css" rel="stylesheet">
+</head>
+<body style="background-color: #9acfea">
+<div class="ui container">
+    <table class="table table-condensed" style="margin-top: 40px !important;" border=2>
+        <tr>
+            <td>编号</td>
+            <td>名称</td>
+            <td>基础费用</td>
+            <td>地点</td>
+            <td>内容</td>
+            <td>日期</td>
+            <td>天数</td>
+            <td>团费</td>
+            <td>团长</td>
+            <td>参加人数</td>
+            <td>团员</td>
+        </tr>
+        <tr th:each="activity:${list1}">
+            <td th:text="${activity.id}"></td>
+            <td th:text="${activity.name}"></td>
+            <td th:text="${activity.basicPay}"></td>
+            <td th:text="${activity.address}"></td>
+            <td th:text="${activity.content}"></td>
+            <td th:text="${activity.date}"></td>
+            <td th:text="${activity.days}"></td>
+            <td th:text="${activity.due}"></td>
+            <td th:text="${activity.leader}"></td>
+            <td th:text="${activity.number}"></td>
+            <td>
+                <table class="table table-condensed">
+                    <tr>
+                        <td>编号</td>
+                        <td>姓名</td>
+                        <td>年龄</td>
+                        <td>性别</td>
+                        <td>花费</td>
+                        <td>手机号</td>
+                    </tr>
+                    <tr th:each="tourist : ${activity.list}">
+                       <td th:text="${tourist.id}"></td>
+                        <td th:text="${tourist.name}"></td>
+                        <td th:text="${tourist.age}"></td>
+                        <td th:text="${tourist.sex}"></td>
+                        <td th:text="${tourist.pay}"></td>
+                        <td th:text="${tourist.phoneNumber}"></td>
+                       <form th:action="@{/Add_Pay}" method="post">
+                            <input type="hidden" th:value="${tourist.id}" name="id2" id="id2">
+                            <input type="hidden" th:value="${activity.id}" name="id3" id="id3">
+                            <button type="submit" class="btn btn-primary">增加个人费用</button>
+                        </form>
+                    </tr>
+               </table>
+               <form th:action="@{/Add_AAPay}" method="post">
+                    <input type="hidden" th:value="${activity.id}" name="id1" id="id1">
+                    <!--<input type="hidden" th:value="${activity.pay}" name="pay" id="pay">-->
+                    <button type="submit" class="btn btn-primary">追加AA费用</button>
+                </form>
+                <form th:action="@{/ActivityReport}" method="post">
+                    <input type="hidden" th:value="${activity.id}" name="id" id="id">
+                    <button type="submit" class="btn btn-primary" id="btnExport" >生成活动报告</button>
+                </form>
+            </td>
+
+        </tr>
+    </table>
+</div>
+</body>
+</html>

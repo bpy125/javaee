@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+  <head>
+    <title>My JSP 'showAll.jsp' starting page</title>
+    <meta charset="UTF-8">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+    <link href="dist/css/bootstrap.css" rel="stylesheet">
+      <style>
+          .aa{
+              display:none;
+
+          }
+          .showDiv {
+              display: block;
+          }
+      </style>
+  </head>
+  
+  <body style="background-color: #9acfea">
+  <div class="ui container">
+      <table border=1 class="table table-condensed" style="margin-top: 40px !important;">
+    <tr>
+			<td>编号</td>
+			<td>活动名</td>
+			<td>费用</td>
+            <td>地点</td>
+            <td>内容</td>
+            <td>时间</td>
+            <td>活动天数</td>
+            <td>团长</td>
+            <td>团费</td>
+            <td>人数</td>
+            <td>是否加入</td>
+	</tr>
+    	<tr th:each="activity:${list}">
+    		
+    		<td th:text="${activity.id}"></td>
+    		<td th:text="${activity.name}"></td>
+    		<td th:text="${activity.basicPay}"></td>
+            <td th:text="${activity.address}"></td>
+            <td th:text="${activity.content}"></td>
+            <td th:text="${activity.date}"></td>
+            <td th:text="${activity.days}"></td>
+            <td th:text="${activity.leader}"></td>
+            <td th:text="${activity.due}"></td>
+            <td th:text="${activity.number}"></td>
+            <td>
+               <!--<div class="aa" id="aa">
+                    <div class="showDiv">
+                    <form id="ff" method="post" th:action="@{/joinActivity}">
+                        <h3>请输入个人身份信息：</h3>
+                        <div class="form-group">
+                            <label for="name">姓名:&nbsp;&nbsp;</label>
+                            <input id = "tb1" type="text" name="name" data-options="required:true" style="margin-right: 20px"/><br><br>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">年龄:&nbsp;&nbsp;</label>
+                            <input id = "tb3" type="text" name="age" data-options="required:true" style="margin-right: 20px"/><br><br>
+                        </div>
+                        <div class="form-group">
+                            <label for="basicWage">性别:&nbsp;&nbsp;</label>
+                            <input id = "tb4" type="text" name="sex" data-options="required:true" style="margin-right: 20px"/><br><br>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phoneNumber">手机号:&nbsp;&nbsp;</label>
+                            <input id = "tb7" type="text" name="phoneNumber" data-options="required:true" /><br><br>
+                        </div>
+                        <div class="form-group">-->
+                            <!-- <a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Add</a>-->
+                         <!--<input  type="hidden" th:value="${activity.id}" name="id" id="id"/>
+                            <input  type="hidden" th:value="${activity.due}" name="due" id="due"/>
+                            <input  type="hidden" th:value="${activity.basicPay}" name="basicPay" id="basicPay"/>
+                            <input  type="hidden" th:value="${activity.number}" name="number" id="number"/>
+                            <center><input type ="submit" id="btn" class="btn btn-primary" value="确定"></center>
+                        </div>
+                    </form>
+                    </div>
+
+                </div>-->
+                <form th:action="@{/Add_Tourist}" method="post">
+                    <input type="hidden" th:value="${activity.id}" name="id" id="id"/>
+                <input type="submit"  id="join" class="btn btn-primary" value="加入">
+                </form>
+            </td>
+            <!-- <input type ="submit" id="btn" class="btn btn-primary" value="加入">-->
+          </tr>
+       </table>
+  <!--  <table id="dg"></table>-->
+      </div>
+  <script type="text/javascript" src="easyui/jquery.min.js"></script>
+  <script type="text/javascript" src="dist/js/bootstrap.js"></script>
+  <script type="text/javascript" th:inline="javascript">
+
+          // function click() {
+          //        document.getElementById("aa").style.display = "block";
+          //        document.getElementById("aa").toggleClass("showDiv").siblings().removeClass("showDiv");
+
+                  // document.getElementById("aa").style.display = "none";
+
+
+
+  </script>
+  </body>
+</html>
